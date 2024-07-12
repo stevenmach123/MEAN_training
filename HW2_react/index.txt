@@ -1,0 +1,78 @@
+1/ Closures can be used to create private variables,  for accessing those variable and remember those variables state, even after that containing function has finished executing
+function counter() {
+    let count = 0; 
+
+    return {
+        increment: function() {
+            count++;
+            return count;
+        },
+        decrement: function() {
+            count--;
+            return count;
+        },
+        getCount: function() {
+            return count;
+        }
+    };
+}
+
+const c = counter();
+
+console.log(c.increment()); 
+console.log(c.increment()); 
+console.log(c.decrement());
+console.log(c.getCount()); 
+
+2/ 
+const : const for variables that you do not intend to reassign. This provides clarity and reduces the risk for accident reassignment.
+let : variables declared with let can be reassigned. let when you expect the variable's value to change over time.
+
+3/ 
+variable and function declarations are moved to the top when compiled.
+
+for (var i = 0; i < 10; i++) {
+  setTimeout(function() {
+    console.log(i);
+  }, 1000);
+}
+output all 10 
+
+4/
+
+const arr = [1, 2];
+function foo1(arg) {
+    arg.push(3);
+}
+foo1(arr);
+console.log(arr);
+ // result: [1,2,3]
+ // reason : arg is deep copy, so arg is reference to orginal 
+
+function foo2(arg) {
+    arg = [1, 2, 3, 4];
+}
+foo2(arr);
+console.log(arr);
+// result: [1,2,3]
+ // reason: arg pointer is reassign to [1,2,3,4], so arr is still [1,2,3]
+  
+
+
+function foo3(arg) {
+    let b = arg;
+    b.push(3);
+}
+foo3(arr);
+console.log(arr);
+// result: [1,2,3,3]
+// arg and b is reference to arr, so b.push(3) is still from arr
+
+function foo4(arg) {
+    let b = arg;
+    b = [1, 2, 3, 4];
+}
+foo4(arr);
+console.log(arr);
+//result : [1,2,3,3]
+//reason: b is reference to different object [1,2,3,4], not arr.
