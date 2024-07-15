@@ -1,3 +1,14 @@
+// 1. what is prototype and prototype chain 
+/*
+What is prototype:
+prototype is an object that main objects can inherit properties and methods from. Every JavaScript object has a prototype. Inside prototype, you can create a function/object/properties, which  automatically point to main object, upon prototype constructor created. 
+
+What is prototype chain :
+When you try to access a property or method on an object, JS  first look for the property on main object. If it doesn't find it, it will look for the property on the object's prototype, then on the prototype's prototype, until it either finds the property or reaches the end of chain (where the prototype is null).
+
+*/
+
+// 2. 6 array custom methods.
 Array.prototype.myFilter = function (cb) {
     let ar = []
     for (let i = 0; i < this.length; i++) {
