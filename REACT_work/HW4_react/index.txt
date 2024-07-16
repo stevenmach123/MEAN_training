@@ -1,0 +1,16 @@
+1. 
+Instance Methods: Defined on the prototype of the class and can be called on instances of the class.
+Static Methods: Defined on the class itself and cannot be called on instances, only on the class.
+
+2. How Js Handles Concurrency
+js handles concurrency using an event loop/ queue.  allowing asynchronous operations like  timers,promises, thread to run non-blocking code.
+
+3. What is Async/Await? How Does It Differ from Using Promise Instance Methods?
+Async/Await: working with promises, making asynchronous code look synchronous. async functions implicitly return a promise, and await pauses execution until the promise resolves.
+Promise Instance Methods: Use then, catch, and finally for handling asynchronous operations, which can lead to more nested and less readable code compared to async/await.
+
+4.Can You Use Await Outside of an Async Function?
+No, await can only be used inside an async function. Using it outside will result in a syntax error.
+
+5. What is Callback Hell and Why is it Considered a Problem?
+Callback Hell: Refers to the situation where multiple nested callback functions make code difficult to read and maintain. It leads to deeply nested code structures, remain hard for code readability and debugging
