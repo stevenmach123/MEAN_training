@@ -1,0 +1,16 @@
+{
+  "registers": [
+    {
+      "name": "ss",
+      "id": "0"
+    },
+    {
+      "id": 70,
+      "name": "khang"
+    },
+    {
+      "id": 8,
+      "name": "lin"
+    }
+  ]
+}

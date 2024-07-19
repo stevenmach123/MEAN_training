@@ -1,0 +1,39 @@
+{
+  "cart": [
+    {
+      "id": "1",
+      "content": "apple",
+      "amount": null
+    },
+    {
+      "id": "1",
+      "content": "apple",
+      "amount": null
+    },
+    {
+      "id": "1",
+      "content": "apple",
+      "amount": null
+    },
+    {
+      "id": "1",
+      "content": "apple",
+      "amount": null
+    },
+    {
+      "id": "1",
+      "content": "apple",
+      "amount": null
+    }
+  ],
+  "inventory": [
+    {
+      "content": "apple",
+      "id": "1"
+    },
+    {
+      "content": "peach",
+      "id": "2"
+    }
+  ]
+}

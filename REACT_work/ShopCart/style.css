@@ -1,0 +1,43 @@
+body {
+    height: 100vh;
+
+}
+
+#app {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    display: grid;
+    width: 60%;
+    height: 70%;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.invent {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(238, 220, 197);
+
+    span {
+        line-height: 40px;
+    }
+
+    div[name=btn] {
+        font-size: 2em;
+        color: white;
+        padding-left: 0.3em;
+        padding-right: 0.3em;
+        cursor: pointer;
+    }
+
+    .plus {
+        background-color: rgb(106, 175, 106);
+    }
+
+    .minus {
+        background-color: red;
+    }
+}
