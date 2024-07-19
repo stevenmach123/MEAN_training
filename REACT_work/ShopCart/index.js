@@ -28,10 +28,10 @@ const API2 = (() => {
     // define your method to add an item to cart
 
 
-    const updateCart = (id, newAmount) => fetch(`${baseURL}/cart/${id}`, {
+    const updateCart = (id, items) => fetch(`${baseURL}/cart/${id}`, {
         headers: headers,
         method: 'PUT',
-        body: JSON.stringify({ amount: newAmount })
+        body: JSON.stringify(items)
     }).then(x => x.json());
 
     const deleteFromCart = (id) => fetch(`${baseURL}/cart/${id}`, {
@@ -126,7 +126,7 @@ const View2 = (() => {
                 <div>${content} </div>
                 <div>x</div>
                 <div>${items.amount}</div>
-                <button onclick="deleteFromCart()">Delete</button>
+                <button onclick="handleDelete(event)">Delete</button>
             </div>
         `
     }
@@ -139,7 +139,7 @@ const View2 = (() => {
         <div class="invent"  id="${id}" >
             <span>${items.content}</span>
             <div  name="btn" class="minus" onclick="handleUpdateAmount(event)" >-</div>
-            <div class="count">0</div>
+            <span class="count">0</span>
             <div name="btn" class="plus" onclick="handleUpdateAmount(event)" >+</div>
             <button class="add" id="${content}" onclick="handleAddToCart(event)" >Add to Cart</button>
         </div>
@@ -195,32 +195,55 @@ const Controller2 = ((model, view) => {
 
     handleAddToCart = async (event) => {
         event.preventDefault()
+
         const el = event.target
         const id = el.parentElement.id
-        const count = parseInt(el.parentNode.childNodes[2]);
+        const count = parseInt(el.parentElement.children[2].innerHTML);
         const invent_item = await model.getInvent(id);
         const cart_items = await model.getCart();
-        const exist = cart_items.find(el => el.id == parseInt(id));
-        if (exist) {
-            const cur_amount = exist.amount;
-            model.updateCart(id, cur_amount + count);
-            cart_items.parentElement.children[2].innerHTML = JSON.stringify(cur_amount + count);
+
+        const element = cart_items.find(el => el.id == parseInt(id));
+
+        if (element) {
+            const new_amount = element.amount + count;
+            element.amount = new_amount
+            await model.updateCart(id, element);
+            state.inventory.find(el => el.id == parseInt(id)).amount = element.amount;
+            cart_items.parentElement.children[2].innerHTML = JSON.stringify(new_amount);
 
         } else {
+
             console.log(count, invent_item);
             invent_item.amount = count
-            model.addToCart(invent_item);
-            cart_container.innerHTML += view.temp2(invent_item);
+            await model.addToCart(invent_item);
+            state.inventory = [...state.inventory, invent_item];
+
         }
 
 
 
     };
 
-    const handleDelete = () => { };
+    handleDelete = async (event) => {
+        event.preventDefault()
+        const el = event.target
+        const en_id = el.parentElement.id;
+        const id = el.parentElement.id.substring(1, en_id.length);
 
-    const handleCheckout = () => { };
+        await model.deleteFromCart(id);
+        const remain_inventory = state.inventory.filter(el => el.id != id);
+        state.inventory = remain_inventory
+
+    };
+
+    handleCheckout = () => {
+        state.inventory = [];
+        model.checkout()
+
+    };
     const bootstrap = () => {
+
+        console.log("init s")
         init();
     };
     return {

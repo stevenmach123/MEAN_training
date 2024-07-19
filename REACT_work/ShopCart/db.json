@@ -3,27 +3,12 @@
     {
       "id": "1",
       "content": "apple",
-      "amount": null
+      "amount": 3
     },
     {
-      "id": "1",
-      "content": "apple",
-      "amount": null
-    },
-    {
-      "id": "1",
-      "content": "apple",
-      "amount": null
-    },
-    {
-      "id": "1",
-      "content": "apple",
-      "amount": null
-    },
-    {
-      "id": "1",
-      "content": "apple",
-      "amount": null
+      "id": "2",
+      "content": "peach",
+      "amount": 2
     }
   ],
   "inventory": [
